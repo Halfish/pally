@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" >
+
+    <!-- 刷新 -->
+    <item
+        android:id="@+id/menu_refresh"
+        android:orderInCategory="100"
+        android:showAsAction="ifRoom|withText"
+        android:icon="@drawable/bs_menu_refresh"
+        android:title="@string/bs_menu_refresh"/>
+    
+    <!-- 完成 -->
+    <item
+        android:id="@+id/menu_complete"
+        android:orderInCategory="100"
+        android:showAsAction="always|withText"
+        android:title="@string/bs_menu_complete" />
+    
+</menu>

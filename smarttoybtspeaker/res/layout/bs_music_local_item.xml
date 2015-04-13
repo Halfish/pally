@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="50dp" >
+
+    <ImageView
+        android:id="@+id/img_album"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_margin="3dp"
+        android:contentDescription="@string/bs_default_descrip"
+        android:scaleType="fitCenter"
+        android:src="@drawable/bs_startup" />
+
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_centerVertical="true"
+        android:layout_margin="10dp"
+        android:layout_toEndOf="@+id/img_album"
+        android:layout_toRightOf="@+id/img_album"
+        android:gravity="center"
+        android:text="@string/bs_music"
+        android:textSize="18sp" />
+
+    <ImageButton
+        android:id="@+id/btn_play_music"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_toLeftOf="@+id/chBox_add_music"
+        android:layout_toStartOf="@+id/chBox_add_music"
+        android:contentDescription="@string/bs_default_descrip"
+        android:background="@drawable/bs_music_play" 
+        android:scaleType="fitXY"/>
+
+    <CheckBox
+        android:id="@+id/chBox_add_music"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:text="" />
+
+</RelativeLayout>

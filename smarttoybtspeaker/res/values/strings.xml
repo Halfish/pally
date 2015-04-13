@@ -1,0 +1,47 @@
+<resources>
+
+    <string name="app_name">Pally</string>
+    <string name="bs_pally">Pally</string>
+	<string name="bs_default_descrip">图片</string>
+	
+	<!-- music -->
+	<string name="bs_music">音乐</string>
+	<string name="bs_music_play">音乐播放</string>
+	<string name="bs_music_local">本地音乐</string>
+	<string name="bs_music_online">在线音乐</string>
+	
+	<!-- radio -->
+	<string name="bs_radio">电台</string>
+	<string name="bs_radio_title1">轻音乐</string>
+	<string name="bs_radio_title2">琵琶语</string>
+	<string name="bs_radio_title3">悠闲下午</string>
+	<string name="bs_radio_title4">武侠金曲</string>
+	<string name="bs_radio_title5">乡村音乐</string>
+	<string name="bs_radio_title6">古典留声</string>
+	<string name="bs_radio_title7">摇滚天地</string>
+	<string name="bs_radio_title8">好声音</string>
+	<string name="bs_radio_title9">经典粤语</string>
+	<string name="bs_radio_title10">民歌</string>
+	
+	<!-- menu -->
+	<string name="bs_menu_push">推送</string>
+	<string name="bs_menu_add">添加</string>
+	<string name="bs_menu_add_local">添加本地音乐</string>
+	<string name="bs_menu_add_online">添加在线音乐</string>
+	
+	<string name="bs_menu_search">搜索</string>
+	<string name="bs_menu_complete">完成</string>
+	<string name="bs_menu_refresh">刷新</string>
+		
+	<string name="bs_music_push">音乐推送</string>
+	<string name="bs_music_pushing">正在推送&#8230;</string>
+	<string name="bs_music_pushed">推送完成！</string>
+	
+	<string name="bs_album_title">曲单列表</string>
+	
+	<string name="bs_radio_add">添加</string>
+	<string name="bs_radio_music">电台音乐</string>
+	
+	<string name="bs_long">abcdefiaoudufaoueuifu</string>
+		
+</resources>

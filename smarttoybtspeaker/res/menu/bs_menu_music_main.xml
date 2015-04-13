@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" >
+
+    <!-- 推送音乐 -->
+    <item
+        android:id="@+id/menu_push"
+        android:orderInCategory="100"
+        android:showAsAction="ifRoom|withText"
+        android:title="@string/bs_menu_push"/>
+    
+    <!-- 添加音乐 -->
+    <item
+        android:id="@+id/menu_add"
+        android:orderInCategory="100"
+        android:showAsAction="always|withText"
+        android:title="@string/bs_menu_add">
+        <menu>
+            <group >
+                <item android:id="@+id/menu_add_local" 
+                    android:title="@string/bs_menu_add_local" />
+                 <item android:id="@+id/menu_add_online" 
+                     android:title="@string/bs_menu_add_online" />
+            </group>
+        </menu>
+    </item>
+
+</menu>

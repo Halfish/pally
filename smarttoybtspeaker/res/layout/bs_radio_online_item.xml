@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/tv_album_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/bs_album_title"
+        android:layout_margin="15dp"
+        android:layout_marginBottom="5dp"
+        android:textSize="20sp" />
+
+    <HorizontalScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scrollbars="none" >
+
+        <LinearLayout
+            android:id="@+id/lyt_album"
+            android:layout_width="wrap_content"
+            android:layout_height="150dp"
+            android:orientation="horizontal" >
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp" >
+
+                <ImageView
+                    android:layout_width="128dp"
+                    android:layout_height="128dp"
+                    android:contentDescription="@string/bs_default_descrip"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/album_taylor_1" />
+
+                <ImageView
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:layout_gravity="center"
+                    android:contentDescription="@string/bs_default_descrip"
+                    android:src="@drawable/bs_checked"
+                    android:visibility="invisible" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                 android:layout_margin="10dp" >
+
+                <ImageView
+                    android:layout_width="128dp"
+                    android:layout_height="128dp"
+                    android:contentDescription="@string/bs_default_descrip"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/album_taylor_2" />
+
+                <ImageView
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:layout_gravity="center"
+                    android:contentDescription="@string/bs_default_descrip"
+                    android:src="@drawable/bs_checked"
+                    android:visibility="invisible" />
+            </FrameLayout>
+            
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" 
+                 android:layout_margin="10dp">
+
+                <ImageView
+                    android:layout_width="128dp"
+                    android:layout_height="128dp"
+                    android:contentDescription="@string/bs_default_descrip"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/album_taylor_3" />
+
+                <ImageView
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:layout_gravity="center"
+                    android:contentDescription="@string/bs_default_descrip"
+                    android:src="@drawable/bs_checked"
+                    android:visibility="invisible" />
+            </FrameLayout>
+            
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                 android:layout_margin="10dp" >
+
+                <ImageView
+                    android:layout_width="128dp"
+                    android:layout_height="128dp"
+                    android:contentDescription="@string/bs_default_descrip"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/album_taylor_4" />
+
+                <ImageView
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:layout_gravity="center"
+                    android:contentDescription="@string/bs_default_descrip"
+                    android:src="@drawable/bs_checked"
+                    android:visibility="invisible" />
+            </FrameLayout>
+            
+            
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                 android:layout_margin="10dp" >
+
+                <ImageView
+                    android:layout_width="128dp"
+                    android:layout_height="128dp"
+                    android:contentDescription="@string/bs_default_descrip"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/album_taylor_5" />
+
+                <ImageView
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:layout_gravity="center"
+                    android:contentDescription="@string/bs_default_descrip"
+                    android:src="@drawable/bs_checked"
+                    android:visibility="invisible" />
+            </FrameLayout>
+            
+        </LinearLayout>
+    </HorizontalScrollView>
+
+</LinearLayout>

@@ -8,8 +8,6 @@ import com.smarttoy.bluetoothspeaker.R;
 import com.smarttoy.bluetoothspeaker.ui.BSActionBarActivity;
 
 import android.annotation.SuppressLint;
-import android.app.ActionBar;
-import android.content.Context;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -36,9 +34,6 @@ public class BSAddOnlineMusicActivity extends BSActionBarActivity {
 			R.drawable.album_taylor_6, R.drawable.album_taylor_7,
 			R.drawable.album_taylor_8, R.drawable.album_taylor_9 };
 
-	private ActionBar m_actionBar;
-	private Context m_context;
-
 	private ListView m_listView;
 	private OnlineMusicBaseAdapter m_adapter;
 	private List<Map<String, Object>> m_listItems;
@@ -47,16 +42,8 @@ public class BSAddOnlineMusicActivity extends BSActionBarActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.bs_activity_music_add_online);
-		m_context = getBaseContext();
 		setActionBarCenterTitle(getResources().getString(R.string.bs_music_online));
-		initActionBar();
 		initListView();
-	}
-
-	private void initActionBar() {
-		m_actionBar = getActionBar();
-		m_actionBar.setDisplayHomeAsUpEnabled(true);
-		m_actionBar.setTitle(R.string.bs_music_online);
 	}
 
 	private void initListView() {
@@ -106,10 +93,9 @@ public class BSAddOnlineMusicActivity extends BSActionBarActivity {
 		case android.R.id.home:
 			finish();
 			break;
-		case R.id.menu_refresh:
-			Toast.makeText(m_context, "refresh", Toast.LENGTH_LONG).show();
-			break;
+			
 		case R.id.menu_complete:
+			Toast.makeText(getBaseContext(), "ÃÌº”ÕÍ≥…", Toast.LENGTH_SHORT).show();
 			finish();
 			break;
 		default:

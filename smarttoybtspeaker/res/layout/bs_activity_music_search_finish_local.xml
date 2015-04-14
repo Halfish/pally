@@ -9,7 +9,7 @@
         android:layout_height="128dp"
         android:layout_centerInParent="true"
         android:contentDescription="@string/bs_default_descrip"
-        android:src="@drawable/bs_music_play"/>
+        android:src="@drawable/bg_circle"/>
     
     <ImageView
         android:id="@+id/img_anim"

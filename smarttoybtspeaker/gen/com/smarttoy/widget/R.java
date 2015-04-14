@@ -15,11 +15,11 @@ public final class R {
 		public static final int activity_horizontal_margin = 0x7f070000;
 	}
 	public static final class drawable {
-		public static final int ic_launcher = 0x7f020029;
-		public static final int st_list_view_frame = 0x7f02002a;
-		public static final int st_shadow = 0x7f02002b;
-		public static final int st_slip_bg = 0x7f02002c;
-		public static final int st_slip_button = 0x7f02002d;
+		public static final int ic_launcher = 0x7f02002c;
+		public static final int st_list_view_frame = 0x7f02002d;
+		public static final int st_shadow = 0x7f02002e;
+		public static final int st_slip_bg = 0x7f02002f;
+		public static final int st_slip_button = 0x7f020030;
 	}
 	public static final class id {
 		public static final int img_background = 0x7f0a001d;

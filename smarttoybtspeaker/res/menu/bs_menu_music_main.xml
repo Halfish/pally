@@ -6,15 +6,17 @@
     <item
         android:id="@+id/menu_push"
         android:orderInCategory="100"
-        android:showAsAction="ifRoom|withText"
-        android:title="@string/bs_menu_push"/>
+        android:showAsAction="ifRoom"
+        android:icon="@drawable/bs_sync"
+        android:title=""/>
     
     <!-- 添加音乐 -->
     <item
         android:id="@+id/menu_add"
         android:orderInCategory="100"
-        android:showAsAction="always|withText"
-        android:title="@string/bs_menu_add">
+        android:showAsAction="always"
+        android:icon="@drawable/bs_add"
+        android:title="">
         <menu>
             <group >
                 <item android:id="@+id/menu_add_local" 

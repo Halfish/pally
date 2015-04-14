@@ -37,11 +37,11 @@
                     android:src="@drawable/album_taylor_1" />
 
                 <ImageView
-                    android:layout_width="64dp"
-                    android:layout_height="64dp"
+                    android:layout_width="128dp"
+                    android:layout_height="128dp"
                     android:layout_gravity="center"
                     android:contentDescription="@string/bs_default_descrip"
-                    android:src="@drawable/bs_checked"
+                    android:src="@drawable/bs_checked_with_shadow"
                     android:visibility="invisible" />
             </FrameLayout>
 
@@ -58,11 +58,11 @@
                     android:src="@drawable/album_taylor_2" />
 
                 <ImageView
-                    android:layout_width="64dp"
-                    android:layout_height="64dp"
+                    android:layout_width="128dp"
+                    android:layout_height="128dp"
                     android:layout_gravity="center"
                     android:contentDescription="@string/bs_default_descrip"
-                    android:src="@drawable/bs_checked"
+                    android:src="@drawable/bs_checked_with_shadow"
                     android:visibility="invisible" />
             </FrameLayout>
             
@@ -79,11 +79,11 @@
                     android:src="@drawable/album_taylor_3" />
 
                 <ImageView
-                    android:layout_width="64dp"
-                    android:layout_height="64dp"
+                   android:layout_width="128dp"
+                    android:layout_height="128dp"
                     android:layout_gravity="center"
                     android:contentDescription="@string/bs_default_descrip"
-                    android:src="@drawable/bs_checked"
+                    android:src="@drawable/bs_checked_with_shadow"
                     android:visibility="invisible" />
             </FrameLayout>
             
@@ -100,11 +100,11 @@
                     android:src="@drawable/album_taylor_4" />
 
                 <ImageView
-                    android:layout_width="64dp"
-                    android:layout_height="64dp"
+                    android:layout_width="128dp"
+                    android:layout_height="128dp"
                     android:layout_gravity="center"
                     android:contentDescription="@string/bs_default_descrip"
-                    android:src="@drawable/bs_checked"
+                    android:src="@drawable/bs_checked_with_shadow"
                     android:visibility="invisible" />
             </FrameLayout>
             
@@ -122,11 +122,11 @@
                     android:src="@drawable/album_taylor_5" />
 
                 <ImageView
-                    android:layout_width="64dp"
-                    android:layout_height="64dp"
+                    android:layout_width="128dp"
+                    android:layout_height="128dp"
                     android:layout_gravity="center"
                     android:contentDescription="@string/bs_default_descrip"
-                    android:src="@drawable/bs_checked"
+                    android:src="@drawable/bs_checked_with_shadow"
                     android:visibility="invisible" />
             </FrameLayout>
             

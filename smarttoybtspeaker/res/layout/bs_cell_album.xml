@@ -13,11 +13,11 @@
 
     <ImageView
         android:id="@+id/img_check"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
+        android:layout_width="128dp"
+        android:layout_height="128dp"
         android:layout_gravity="center"
         android:visibility="invisible"
 		android:contentDescription="@string/bs_default_descrip"
-        android:src="@drawable/bs_checked" />
+        android:src="@drawable/bs_checked_with_shadow" />
 
 </FrameLayout>

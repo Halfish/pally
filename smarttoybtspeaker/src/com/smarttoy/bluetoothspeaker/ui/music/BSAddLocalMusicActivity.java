@@ -109,10 +109,6 @@ public class BSAddLocalMusicActivity extends BSActionBarActivity {
 			finish();
 			break;
 
-		case R.id.menu_search:
-			m_progressBar.setVisibility(View.VISIBLE);
-			break;
-
 		case R.id.menu_complete:
 			Intent intent = new Intent(BSAddLocalMusicActivity.this,
 					BSSearchFinishLocalMusicActivity.class);

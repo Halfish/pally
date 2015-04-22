@@ -9,6 +9,7 @@
 	<string name="bs_music_play">音乐播放</string>
 	<string name="bs_music_local">本地音乐</string>
 	<string name="bs_music_online">在线音乐</string>
+	<string name="bs_music_searching">正在搜索本地音乐</string>
 	
 	<!-- radio -->
 	<string name="bs_radio">电台</string>
@@ -42,6 +43,8 @@
 	<string name="bs_radio_add">添加</string>
 	<string name="bs_radio_music">电台音乐</string>
 	
-	<string name="bs_long">abcdefiaoudufaoueuifu</string>
+	
+	
+	  
 		
 </resources>

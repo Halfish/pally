@@ -4,24 +4,24 @@
 
     <item
         android:drawable="@drawable/anim_search1"
-        android:duration="60"/>
+        android:duration="41"/>
     <item
         android:drawable="@drawable/anim_search2"
-        android:duration="60"/>
+        android:duration="41"/>
     <item
         android:drawable="@drawable/anim_search3"
-        android:duration="60"/>
+        android:duration="41"/>
     <item
         android:drawable="@drawable/anim_search4"
-        android:duration="60"/>
+        android:duration="41"/>
     <item
         android:drawable="@drawable/anim_search5"
-        android:duration="60"/>
+        android:duration="41"/>
     <item
         android:drawable="@drawable/anim_search6"
-        android:duration="60"/>
+        android:duration="41"/>
     <item
         android:drawable="@drawable/anim_search7"
-        android:duration="60"/>
+        android:duration="41"/>
 
 </animation-list>

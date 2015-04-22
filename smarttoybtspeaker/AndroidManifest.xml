@@ -7,6 +7,8 @@
         android:minSdkVersion="14"
         android:targetSdkVersion="21" />
 
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"></uses-permission>
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
@@ -21,23 +23,21 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        
         <activity android:name=".ui.BSActionBarActivity" />
         <!-- Panel Activity -->
         <activity android:name=".ui.BSMainPanelActivity" />
         <activity android:name=".ui.music.BSMusicPanelActivity" />
         <activity android:name=".ui.radio.BSRadioPanelActivity" />
-        
+
         <!-- Music Activity -->
         <activity android:name=".ui.music.BSPushMusicActivity" />
         <activity android:name=".ui.music.BSAddLocalMusicActivity" />
         <activity android:name=".ui.music.BSAddOnlineMusicActivity" />
         <activity android:name=".ui.music.BSSearchLocalMusicActivity" />
         <activity android:name=".ui.music.BSSearchFinishLocalMusicActivity" />
-        
+
         <!-- Radio Activity -->
         <activity android:name=".ui.radio.BSRadioAddOnlineMusicActivity" />
-        
     </application>
 
 </manifest>

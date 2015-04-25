@@ -184,9 +184,9 @@ public class BSAddLocalMusicActivity extends BSActionBarActivity implements
 	}
 
 	private void initMediaPlayer() {
-//		m_mediaPlayer = MediaPlayer.create(this, R.raw.test);
-//		m_mediaPlayer.setOnErrorListener(this);
-//		m_mediaPlayer.setOnCompletionListener(this);
+		m_mediaPlayer = MediaPlayer.create(this, R.raw.test);
+		m_mediaPlayer.setOnErrorListener(this);
+		m_mediaPlayer.setOnCompletionListener(this);
 	}
 
 	private void playSong(int position) {

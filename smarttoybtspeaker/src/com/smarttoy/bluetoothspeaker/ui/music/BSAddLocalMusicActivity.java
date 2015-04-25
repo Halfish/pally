@@ -3,7 +3,7 @@ package com.smarttoy.bluetoothspeaker.ui.music;
 /*
  * @author: Bruce
  * @last edit: 2015-3-25
- * @description Ìí¼Ó±¾µØÒôÀÖ½çÃæ
+ * @description ï¿½ï¿½Ó±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö½ï¿½ï¿½ï¿½
  */
 
 import java.io.File;
@@ -14,7 +14,7 @@ import java.util.Map;
 
 import com.smarttoy.bluetoothspeaker.R;
 import com.smarttoy.bluetoothspeaker.ui.BSActionBarActivity;
-import com.smarttoy.bluetoothspeaker.ui.STMp3Util;
+import com.smarttoy.mp3.STMp3Util;
 
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
@@ -52,6 +52,8 @@ import android.widget.Toast;
 public class BSAddLocalMusicActivity extends BSActionBarActivity implements
 		OnErrorListener, OnCompletionListener {
 
+	private static final String LOG_TAG = BSAddLocalMusicActivity.class.getName();
+	
 	private Context m_context;
 	private LayoutInflater m_inflater;
 	private ListView m_listView;
@@ -128,14 +130,14 @@ public class BSAddLocalMusicActivity extends BSActionBarActivity implements
 	private void addNewMusicFile(String name) {
 		item = new HashMap<String, Object>();
 
-//		Bitmap bitmap;
-//		bitmap = getAlbumCover(m_musicList.get(m_musicList.size() - 1));
-//		if (bitmap != null) {
-//			item.put("album", new BitmapDrawable(getResources(), bitmap));
-//		} else {
+		Bitmap bitmap;
+		bitmap = getAlbumCover(m_musicList.get(m_musicList.size() - 1));
+		if (bitmap != null) {
+			item.put("album", new BitmapDrawable(getResources(), bitmap));
+		} else {
 			item.put("album", getResources()
 					.getDrawable(R.drawable.album_jay_6));
-//		}
+		}
 
 		item.put("name", name);
 		m_listItems.add(item);
@@ -146,11 +148,16 @@ public class BSAddLocalMusicActivity extends BSActionBarActivity implements
 		STMp3Util m_util = new STMp3Util(path);
 
 		if (!m_util.init()) {
-			Log.e("Halfish", "open mp3 file failed");
+			Log.e(LOG_TAG, "getAlbumCover: open mp3 file failed");
 			return null;
 		}
 
 		byte[] img = m_util.getAlbumCover();
+		
+		if (img == null) {
+			Log.e(LOG_TAG, "getAlbumCover: parse image empty!");
+			return null;
+		}
 
 		BitmapFactory.Options bitmapOption = new BitmapFactory.Options();
 		bitmapOption.inPreferredConfig = Bitmap.Config.RGB_565;
@@ -177,9 +184,9 @@ public class BSAddLocalMusicActivity extends BSActionBarActivity implements
 	}
 
 	private void initMediaPlayer() {
-		m_mediaPlayer = MediaPlayer.create(this, R.raw.test);
-		m_mediaPlayer.setOnErrorListener(this);
-		m_mediaPlayer.setOnCompletionListener(this);
+//		m_mediaPlayer = MediaPlayer.create(this, R.raw.test);
+//		m_mediaPlayer.setOnErrorListener(this);
+//		m_mediaPlayer.setOnCompletionListener(this);
 	}
 
 	private void playSong(int position) {
@@ -234,7 +241,7 @@ public class BSAddLocalMusicActivity extends BSActionBarActivity implements
 	}
 
 	private void retrieveMusicFiles() {
-		// ÊÇ·ñÓÐÍâ²¿´æ´¢Éè±¸
+		// ï¿½Ç·ï¿½ï¿½ï¿½ï¿½â²¿ï¿½æ´¢ï¿½è±¸
 		if (Environment.getExternalStorageState().equals(
 				Environment.MEDIA_MOUNTED)) {
 			m_progressDialog = new ProgressDialog(this);

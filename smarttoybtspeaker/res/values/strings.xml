@@ -13,16 +13,9 @@
 	
 	<!-- radio -->
 	<string name="bs_radio">电台</string>
-	<string name="bs_radio_title1">轻音乐</string>
-	<string name="bs_radio_title2">琵琶语</string>
-	<string name="bs_radio_title3">悠闲下午</string>
-	<string name="bs_radio_title4">武侠金曲</string>
-	<string name="bs_radio_title5">乡村音乐</string>
-	<string name="bs_radio_title6">古典留声</string>
-	<string name="bs_radio_title7">摇滚天地</string>
-	<string name="bs_radio_title8">好声音</string>
-	<string name="bs_radio_title9">经典粤语</string>
-	<string name="bs_radio_title10">民歌</string>
+	<string name="bs_hot_channels">热门频道</string>
+	<string name="bs_radio_title">回到十二月</string>
+	<string name="bs_radio_artist">歌手：泰勒斯威夫特</string>
 	
 	<!-- menu -->
 	<string name="bs_menu_push">推送</string>

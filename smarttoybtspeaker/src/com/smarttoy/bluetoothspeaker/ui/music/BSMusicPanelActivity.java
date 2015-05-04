@@ -3,7 +3,7 @@ package com.smarttoy.bluetoothspeaker.ui.music;
 /*
  * @author: Bruce
  * @last edit: 2015-3-25
- * @description ÒôÀÖÃæ°å½çÃæ
+ * @description ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
  */
 
 import java.util.ArrayList;
@@ -40,11 +40,10 @@ public class BSMusicPanelActivity extends BSActionBarActivity {
 		m_context = getApplicationContext();
 
 		setActionBarCenterTitle(getResources().getString(R.string.bs_pally));
-		
+
 		initListView();
 	}
 
-	// TODO Êý¾ÝÀ´Ô´´ýÐÞ¸Ä
 	private List<Map<String, Object>> getData() {
 		listItems = new ArrayList<Map<String, Object>>();
 
@@ -102,7 +101,7 @@ public class BSMusicPanelActivity extends BSActionBarActivity {
 
 		case R.id.menu_add_local:
 			Intent intent2 = new Intent(BSMusicPanelActivity.this,
-					BSSearchLocalMusicActivity.class);
+					BSAddLocalMusicActivity.class);
 			startActivity(intent2);
 			break;
 

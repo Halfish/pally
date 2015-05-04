@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="20dp"
+    android:layout_marginEnd="20dp"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical" >
+
+    <FrameLayout
+        android:id="@+id/fll_radio_album"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
+
+        <ImageView
+            android:layout_width="128dp"
+            android:layout_height="128dp"
+            android:layout_gravity="center"
+            android:contentDescription="@string/bs_default_descrip"
+            android:scaleType="fitXY"
+            android:src="@drawable/album_taylor_7" />
+
+        <ImageView
+            android:layout_width="128dp"
+            android:layout_height="128dp"
+            android:layout_gravity="center"
+            android:contentDescription="@string/bs_default_descrip"
+            android:src="@drawable/bs_checked_with_shadow"
+            android:visibility="invisible" />
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/tv_radio_title"
+        android:layout_width="match_parent"
+        android:layout_height="18dp"
+        android:layout_margin="5dp"
+        android:gravity="center_horizontal"
+        android:text="@string/bs_radio_title"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/tv_radio_artist"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="@string/bs_radio_artist"
+        android:textColor="@color/font_color_lignt_gray"
+        android:textSize="12sp" />
+
+</LinearLayout>

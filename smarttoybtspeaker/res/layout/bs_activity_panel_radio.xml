@@ -2,13 +2,18 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
-    
-	<ListView 
-	    android:id="@+id/lv_radio"
-	    android:descendantFocusability="blocksDescendants"
-	    android:layout_width="match_parent"
-	    android:layout_height="wrap_content">
-	    
-	</ListView>
-    
+
+    <GridView
+        android:id="@+id/gv_radio"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:descendantFocusability="blocksDescendants"
+        android:divider="@null"
+        android:horizontalSpacing="2dp"
+        android:numColumns="2"
+        android:stretchMode="columnWidth"
+        android:verticalSpacing="5dp" >
+    </GridView>
+
 </RelativeLayout>

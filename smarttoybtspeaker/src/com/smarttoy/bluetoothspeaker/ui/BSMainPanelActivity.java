@@ -17,15 +17,8 @@ public class BSMainPanelActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
-//		// FullScreen
-//		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-//		this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-//				WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		getActionBar().hide();
-
 		setContentView(R.layout.bs_activity_panel_main);
-
 		initButtons();
 	}
 

@@ -3,7 +3,7 @@ package com.smarttoy.bluetoothspeaker.ui.music;
 /*
  * @author: Bruce
  * @last edit: 2015-3-25
- * @description ��ӱ������ֽ���
+ * @description: add local music files
  */
 
 import java.io.File;
@@ -19,7 +19,6 @@ import com.smarttoy.mp3.STMp3Util;
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
@@ -43,7 +42,6 @@ import android.widget.BaseAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -138,6 +136,7 @@ public class BSAddLocalMusicActivity extends BSActionBarActivity implements
 			item.put("album", getResources()
 					.getDrawable(R.drawable.album_jay_6));
 		}
+		
 
 		item.put("name", name);
 		m_listItems.add(item);
@@ -184,7 +183,7 @@ public class BSAddLocalMusicActivity extends BSActionBarActivity implements
 	}
 
 	private void initMediaPlayer() {
-		m_mediaPlayer = MediaPlayer.create(this, R.raw.test);
+		m_mediaPlayer = new MediaPlayer();
 		m_mediaPlayer.setOnErrorListener(this);
 		m_mediaPlayer.setOnCompletionListener(this);
 	}
@@ -241,7 +240,7 @@ public class BSAddLocalMusicActivity extends BSActionBarActivity implements
 	}
 
 	private void retrieveMusicFiles() {
-		// �Ƿ����ⲿ�洢�豸
+		// Does SD card exists ?
 		if (Environment.getExternalStorageState().equals(
 				Environment.MEDIA_MOUNTED)) {
 			m_progressDialog = new ProgressDialog(this);
@@ -322,9 +321,7 @@ public class BSAddLocalMusicActivity extends BSActionBarActivity implements
 			break;
 
 		case R.id.menu_complete:
-			Intent intent = new Intent(BSAddLocalMusicActivity.this,
-					BSSearchFinishLocalMusicActivity.class);
-			startActivity(intent);
+			// TODO finish animation ?
 			finish();
 			break;
 
@@ -363,7 +360,7 @@ public class BSAddLocalMusicActivity extends BSActionBarActivity implements
 					parent, false);
 			ImageView imageView = (ImageView) view.findViewById(R.id.img_album);
 			TextView textView = (TextView) view.findViewById(R.id.tv_name);
-			ImageButton imageButton = (ImageButton) view
+			ImageView imageButton = (ImageView) view
 					.findViewById(R.id.btn_play_music);
 			CheckBox checkBox = (CheckBox) view
 					.findViewById(R.id.chBox_add_music);

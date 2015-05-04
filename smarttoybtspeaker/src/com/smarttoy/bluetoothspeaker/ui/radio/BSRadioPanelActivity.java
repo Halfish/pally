@@ -1,12 +1,13 @@
 package com.smarttoy.bluetoothspeaker.ui.radio;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+/*
+ * @author: BruceZhang
+ * @description: radio panel;
+ */
 
+import java.util.ArrayList;
+import java.util.List;
 import android.annotation.SuppressLint;
-import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -15,66 +16,36 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.FrameLayout;
-import android.widget.ListView;
+import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.TextView;
 import com.smarttoy.bluetoothspeaker.R;
 import com.smarttoy.bluetoothspeaker.ui.BSActionBarActivity;
+import com.smarttoy.bluetoothspeaker.ui.BSAlbum;
+import com.smarttoy.bluetoothspeaker.ui.BSApplication;
 
 public class BSRadioPanelActivity extends BSActionBarActivity {
 
-	private ActionBar m_actionBar;
-	private ListView m_listView;
+	private GridView m_gridView;
 	private RadioBaseAdapter m_adapter;
-	private List<Map<String, String>> m_listItems;
+	private List<BSAlbum> m_listItems;
+	public static final int REQUEST_CODE_ALBUM_DATA = 1000;
+	public static final int RESULT_CODE_ALBUM_DATA = 1001;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.bs_activity_panel_radio);
-		setActionBarCenterTitle(getResources().getString(R.string.bs_radio));
-		initActionBar();
+		setActionBarCenterTitle(getResources().getString(
+				R.string.bs_radio_music));
 		initListView();
 	}
 
-	private void initActionBar() {
-		m_actionBar = getActionBar();
-		m_actionBar.setTitle(R.string.bs_radio_music);
-	}
-
 	private void initListView() {
-		m_listView = (ListView) findViewById(R.id.lv_radio);
-
-		m_listItems = new ArrayList<Map<String, String>>();
-
-		Map<String, String> item = new HashMap<String, String>();
-		item.put("title1", getResources().getString(R.string.bs_radio_title1));
-		item.put("title2", getResources().getString(R.string.bs_radio_title2));
-		m_listItems.add(item);
-
-		item = new HashMap<String, String>();
-		item.put("title1", getResources().getString(R.string.bs_radio_title3));
-		item.put("title2", getResources().getString(R.string.bs_radio_title4));
-		m_listItems.add(item);
-
-		item = new HashMap<String, String>();
-		item.put("title1", getResources().getString(R.string.bs_radio_title5));
-		item.put("title2", getResources().getString(R.string.bs_radio_title6));
-		m_listItems.add(item);
-		
-		item = new HashMap<String, String>();
-		item.put("title1", getResources().getString(R.string.bs_radio_title7));
-		item.put("title2", getResources().getString(R.string.bs_radio_title8));
-		m_listItems.add(item);
-		
-		item = new HashMap<String, String>();
-		item.put("title1", getResources().getString(R.string.bs_radio_title9));
-		item.put("title2", getResources().getString(R.string.bs_radio_title10));
-		m_listItems.add(item);
-
+		m_gridView = (GridView) findViewById(R.id.gv_radio);
+		m_listItems = new ArrayList<BSAlbum>();
 		m_adapter = new RadioBaseAdapter();
-		m_listView.setAdapter(m_adapter);
-		m_listView.setItemsCanFocus(true);
-
+		m_gridView.setAdapter(m_adapter);
 	}
 
 	@Override
@@ -93,7 +64,7 @@ public class BSRadioPanelActivity extends BSActionBarActivity {
 		case R.id.menu_add:
 			Intent intent = new Intent(BSRadioPanelActivity.this,
 					BSRadioAddOnlineMusicActivity.class);
-			startActivity(intent);
+			startActivityForResult(intent, REQUEST_CODE_ALBUM_DATA);
 			break;
 
 		default:
@@ -103,12 +74,23 @@ public class BSRadioPanelActivity extends BSActionBarActivity {
 		return false;
 	}
 
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		if (requestCode == REQUEST_CODE_ALBUM_DATA
+				&& resultCode == RESULT_CODE_ALBUM_DATA) {
+			if (data.getBooleanExtra("data_selected", false)) {
+				m_listItems = BSApplication.getData();
+				m_adapter.notifyDataSetChanged();
+			}
+		}
+	}
+
 	private class RadioBaseAdapter extends BaseAdapter {
 
-		private TextView mTitleTextView1;
-		private TextView mTitleTextView2;
-		private FrameLayout mLeftFly; 
-		private FrameLayout mRightFly; 
+		private TextView mTitleTV;
+		private TextView mArtistTV;
+		private ImageView mImgAlbum;
+		private FrameLayout mFrameLayout;
 
 		@Override
 		public int getCount() {
@@ -128,45 +110,20 @@ public class BSRadioPanelActivity extends BSActionBarActivity {
 		@SuppressLint({ "ViewHolder", "InflateParams" })
 		@Override
 		public View getView(int position, View convertView, ViewGroup parent) {
-			View v = getLayoutInflater().inflate(R.layout.bs_radio_panel_item,
+
+			View v = getLayoutInflater().inflate(R.layout.bs_radio_music_item,
 					null);
-			mTitleTextView1 = (TextView) v.findViewById(R.id.tv_radio_title1);
-			mTitleTextView1.setText((String) m_listItems.get(position).get(
-					"title1"));
+			mTitleTV = (TextView) v.findViewById(R.id.tv_radio_title);
+			mArtistTV = (TextView) v.findViewById(R.id.tv_radio_artist);
+			mFrameLayout = (FrameLayout) v.findViewById(R.id.fll_radio_album);
+			mImgAlbum = (ImageView) mFrameLayout.getChildAt(0);
 
-			mTitleTextView2 = (TextView) v.findViewById(R.id.tv_radio_title2);
-			mTitleTextView2.setText((String) m_listItems.get(position).get(
-					"title2"));
+			BSAlbum album = m_listItems.get(position);
 
-			mLeftFly = (FrameLayout) v.findViewById(R.id.fll_radio_left);
-			mRightFly = (FrameLayout) v.findViewById(R.id.fll_radio_right);
-			
-			mLeftFly.setOnClickListener(new View.OnClickListener() {
-				
-				@Override
-				public void onClick(View v) {
-					View view = ((ViewGroup) v).getChildAt(1);
-					if (view.isShown()) {
-						view.setVisibility(View.INVISIBLE);
-					} else {
-						view.setVisibility(View.VISIBLE);
-					}
-				}
-			});
-			
-			mRightFly.setOnClickListener(new View.OnClickListener() {
-				
-				@Override
-				public void onClick(View v) {
-					View view = ((ViewGroup) v).getChildAt(1);
-					if (view.isShown()) {
-						view.setVisibility(View.INVISIBLE);
-					} else {
-						view.setVisibility(View.VISIBLE);
-					}
-				}
-			});
-			
+			mTitleTV.setText(album.getTitle());
+			mArtistTV.setText(album.getArtist());
+			mImgAlbum.setImageDrawable(album.getCover());
+
 			return v;
 		}
 	}

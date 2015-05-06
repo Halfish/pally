@@ -7,7 +7,6 @@ package com.smarttoy.bluetoothspeaker.ui.radio;
 
 import java.util.ArrayList;
 import java.util.List;
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -19,6 +18,8 @@ import android.widget.FrameLayout;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.smarttoy.bluetoothspeaker.R;
 import com.smarttoy.bluetoothspeaker.ui.BSActionBarActivity;
 import com.smarttoy.bluetoothspeaker.ui.BSAlbum;
@@ -59,6 +60,11 @@ public class BSRadioPanelActivity extends BSActionBarActivity {
 		switch (item.getItemId()) {
 		case android.R.id.home:
 			finish();
+			break;
+
+		case R.id.menu_push:
+			Toast.makeText(getApplicationContext(), "Push!", Toast.LENGTH_SHORT)
+					.show();
 			break;
 
 		case R.id.menu_add:
@@ -107,15 +113,19 @@ public class BSRadioPanelActivity extends BSActionBarActivity {
 			return 0;
 		}
 
-		@SuppressLint({ "ViewHolder", "InflateParams" })
 		@Override
 		public View getView(int position, View convertView, ViewGroup parent) {
 
-			View v = getLayoutInflater().inflate(R.layout.bs_radio_music_item,
-					null);
-			mTitleTV = (TextView) v.findViewById(R.id.tv_radio_title);
-			mArtistTV = (TextView) v.findViewById(R.id.tv_radio_artist);
-			mFrameLayout = (FrameLayout) v.findViewById(R.id.fll_radio_album);
+			if (convertView == null) {
+				convertView = getLayoutInflater().inflate(
+						R.layout.bs_radio_music_item, parent, false);
+			}
+
+			mTitleTV = (TextView) convertView.findViewById(R.id.tv_radio_title);
+			mArtistTV = (TextView) convertView
+					.findViewById(R.id.tv_radio_artist);
+			mFrameLayout = (FrameLayout) convertView
+					.findViewById(R.id.fll_radio_album);
 			mImgAlbum = (ImageView) mFrameLayout.getChildAt(0);
 
 			BSAlbum album = m_listItems.get(position);
@@ -124,7 +134,7 @@ public class BSRadioPanelActivity extends BSActionBarActivity {
 			mArtistTV.setText(album.getArtist());
 			mImgAlbum.setImageDrawable(album.getCover());
 
-			return v;
+			return convertView;
 		}
 	}
 

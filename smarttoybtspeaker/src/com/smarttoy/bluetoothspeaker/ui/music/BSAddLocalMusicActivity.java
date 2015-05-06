@@ -1,7 +1,7 @@
 package com.smarttoy.bluetoothspeaker.ui.music;
 
 /*
- * @author: Bruce
+ * @author: BruceZhang
  * @last edit: 2015-3-25
  * @description: add local music files
  */
@@ -14,6 +14,7 @@ import java.util.Map;
 
 import com.smarttoy.bluetoothspeaker.R;
 import com.smarttoy.bluetoothspeaker.ui.BSActionBarActivity;
+import com.smarttoy.bluetoothspeaker.ui.BSApplication;
 import com.smarttoy.mp3.STMp3Util;
 
 import android.annotation.SuppressLint;
@@ -63,6 +64,7 @@ public class BSAddLocalMusicActivity extends BSActionBarActivity implements
 
 	private List<String> m_musicList;
 	private List<SONG_STATE> m_songStates;
+	private List<Boolean> m_songSelected;
 	private Handler m_handler;
 	private ProgressDialog m_progressDialog;
 
@@ -134,10 +136,9 @@ public class BSAddLocalMusicActivity extends BSActionBarActivity implements
 			item.put("album", new BitmapDrawable(getResources(), bitmap));
 		} else {
 			item.put("album", getResources()
-					.getDrawable(R.drawable.album_jay_6));
+					.getDrawable(R.drawable.album_jay_1));
 		}
 		
-
 		item.put("name", name);
 		m_listItems.add(item);
 		m_adapter.notifyDataSetChanged();
@@ -258,9 +259,11 @@ public class BSAddLocalMusicActivity extends BSActionBarActivity implements
 						m_musicList.clear();
 						m_songStates.clear();
 						m_listItems.clear();
+						m_songSelected.clear();
 					} else {
 						m_musicList = new ArrayList<String>();
 						m_songStates = new ArrayList<BSAddLocalMusicActivity.SONG_STATE>();
+						m_songSelected = new ArrayList<Boolean>();
 					}
 					doRetrieveFiles(file, ext);
 					m_handler.sendEmptyMessage(SEARCH_MUSIC_COMPLETE);
@@ -289,6 +292,7 @@ public class BSAddLocalMusicActivity extends BSActionBarActivity implements
 							&& (file.getTotalSpace() > MINIMUM_SONG_SIZE_BYTES)) {
 						m_musicList.add(fullname);
 						m_songStates.add(SONG_STATE.IDLE);
+						m_songSelected.add(false);
 						m_handler.sendMessage(getStringMessage(NEW_FILE_FOUND,
 								"name", file.getName()));
 						break;
@@ -321,7 +325,14 @@ public class BSAddLocalMusicActivity extends BSActionBarActivity implements
 			break;
 
 		case R.id.menu_complete:
-			// TODO finish animation ?
+			ArrayList<Map<String, Object>> albums = new ArrayList<Map<String,Object>>();
+			for (int i = 0; i < m_songSelected.size(); i++) {
+				if(m_songSelected.get(i)) {
+					albums.add(m_listItems.get(i));
+				}
+			}
+			BSApplication.setSimpleAlbum(albums);
+			setResult(BSMusicPanelActivity.RESULT_CODE);
 			finish();
 			break;
 
@@ -373,6 +384,7 @@ public class BSAddLocalMusicActivity extends BSActionBarActivity implements
 				@Override
 				public void onCheckedChanged(CompoundButton buttonView,
 						boolean isChecked) {
+					m_songSelected.set(position, isChecked);
 				}
 			});
 
@@ -386,7 +398,7 @@ public class BSAddLocalMusicActivity extends BSActionBarActivity implements
 				break;
 
 			case PAUSE:
-				imageButton.setBackgroundResource(R.drawable.bs_music_pause);
+				imageButton.setBackgroundResource(R.drawable.bs_music_play);
 				break;
 
 			default:

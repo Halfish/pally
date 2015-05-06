@@ -25,7 +25,7 @@
         android:layout_marginEnd="85dp"
         android:layout_toEndOf="@+id/img_album"
         android:layout_toRightOf="@+id/img_album"
-        android:gravity="center"
+        android:gravity="start|center_vertical"
         android:layout_centerInParent="true"
         android:text="@string/bs_music"
         android:ellipsize="marquee"

@@ -14,7 +14,7 @@ import com.fortysevendeg.swipelistview.BaseSwipeListViewListener;
 import com.fortysevendeg.swipelistview.SwipeListView;
 import com.smarttoy.bluetoothspeaker.R;
 import com.smarttoy.bluetoothspeaker.ui.BSActionBarActivity;
-import com.smarttoy.bluetoothspeaker.ui.BSApplication;
+import com.smarttoy.bluetoothspeaker.ui.BSConfigure;
 import com.smarttoy.bluetoothspeaker.ui.BSPushActivity;
 
 import android.content.Intent;
@@ -140,7 +140,7 @@ public class BSMusicPanelActivity extends BSActionBarActivity {
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if (requestCode == REQUEST_CODE && resultCode == RESULT_CODE) {
-			m_listItems = BSApplication.getSimpleAlbum();
+			m_listItems = BSConfigure.getSimpleAlbum();
 			Log.e("Halfish", m_listItems.toString());
 			m_simpleAdapter.notifyDataSetChanged();
 		}

@@ -1,33 +1,44 @@
 package com.smarttoy.bluetoothspeaker.ui;
 
-import java.util.ArrayList;
-import java.util.Map;
+import com.smarttoy.bluetoothspeaker.R;
+import com.smarttoy.crash.STCrashHandler;
 
-import android.util.Log;
+import android.app.Application;
+import android.content.Context;
 
-public class BSApplication {
-	
-	public static final String BLUETOOTH_SPEAKER_NAME = "Halfish";
-	
-	private static ArrayList<BSAlbum> mData;
-	private static ArrayList<Map<String, Object>> mAlbums;
-
-	public static ArrayList<BSAlbum> getData() {
-		return mData;
+public class BSApplication extends Application {
+	private static Context s_context = null;
+	public static Context getContext() {
+		return s_context;
 	}
 	
-	public static void setData(ArrayList<BSAlbum> data) {
-		mData = data;
+	@Override
+	public void onCreate() {
+		s_context = this.getBaseContext();
+		CrashGuard crash = CrashGuard.getInstance();
+		crash.init(s_context);
+		
+		super.onCreate();
 	}
-	
-	public static void setSimpleAlbum(ArrayList<Map<String, Object>> albums) {
-		mAlbums = albums;
-	}
-	
-	public static ArrayList<Map<String, Object>> getSimpleAlbum() {
-		if(mAlbums != null) {
-			Log.e("BSApplication get", mAlbums.toString());
+
+	// 处理崩溃
+	static class CrashGuard extends STCrashHandler {
+		
+		private static CrashGuard s_instance;
+		public static CrashGuard getInstance() {
+			if (s_instance == null) {
+				synchronized (CrashGuard.class) {
+					if (s_instance == null) {
+						s_instance = new CrashGuard();
+					}
+				}
+			}
+			return s_instance;
 		}
-		return mAlbums;
+		
+		@Override
+		protected String getAppName() {
+			return getContext().getResources().getString(R.string.app_name);
+		}
 	}
 }

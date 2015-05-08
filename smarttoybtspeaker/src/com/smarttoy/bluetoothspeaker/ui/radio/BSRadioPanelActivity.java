@@ -22,7 +22,7 @@ import android.widget.TextView;
 import com.smarttoy.bluetoothspeaker.R;
 import com.smarttoy.bluetoothspeaker.ui.BSActionBarActivity;
 import com.smarttoy.bluetoothspeaker.ui.BSAlbum;
-import com.smarttoy.bluetoothspeaker.ui.BSApplication;
+import com.smarttoy.bluetoothspeaker.ui.BSConfigure;
 import com.smarttoy.bluetoothspeaker.ui.BSPushActivity;
 
 public class BSRadioPanelActivity extends BSActionBarActivity {
@@ -111,7 +111,7 @@ public class BSRadioPanelActivity extends BSActionBarActivity {
 		if (requestCode == REQUEST_CODE_ALBUM_DATA
 				&& resultCode == RESULT_CODE_ALBUM_DATA) {
 			if (data.getBooleanExtra("data_selected", false)) {
-				m_listItems = BSApplication.getData();
+				m_listItems = BSConfigure.getData();
 				m_adapter.notifyDataSetChanged();
 			}
 		}

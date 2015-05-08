@@ -14,7 +14,7 @@ import java.util.Map;
 
 import com.smarttoy.bluetoothspeaker.R;
 import com.smarttoy.bluetoothspeaker.ui.BSActionBarActivity;
-import com.smarttoy.bluetoothspeaker.ui.BSApplication;
+import com.smarttoy.bluetoothspeaker.ui.BSConfigure;
 import com.smarttoy.mp3.STMp3Util;
 
 import android.annotation.SuppressLint;
@@ -353,7 +353,7 @@ public class BSAddLocalMusicActivity extends BSActionBarActivity implements
 					albums.add(m_listItems.get(i));
 				}
 			}
-			BSApplication.setSimpleAlbum(albums);
+			BSConfigure.setSimpleAlbum(albums);
 			setResult(BSMusicPanelActivity.RESULT_CODE);
 			finish();
 			break;

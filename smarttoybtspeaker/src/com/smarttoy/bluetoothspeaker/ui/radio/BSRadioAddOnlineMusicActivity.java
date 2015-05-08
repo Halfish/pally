@@ -5,7 +5,7 @@ import java.util.List;
 import com.smarttoy.bluetoothspeaker.R;
 import com.smarttoy.bluetoothspeaker.ui.BSActionBarActivity;
 import com.smarttoy.bluetoothspeaker.ui.BSAlbum;
-import com.smarttoy.bluetoothspeaker.ui.BSApplication;
+import com.smarttoy.bluetoothspeaker.ui.BSConfigure;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -121,7 +121,7 @@ public class BSRadioAddOnlineMusicActivity extends BSActionBarActivity {
 		}
 
 		Intent intent = getIntent();
-		BSApplication.setData(m_listSelected);
+		BSConfigure.setData(m_listSelected);
 		intent.putExtra("data_selected", true);
 		setResult(BSRadioPanelActivity.RESULT_CODE_ALBUM_DATA, intent);
 	}

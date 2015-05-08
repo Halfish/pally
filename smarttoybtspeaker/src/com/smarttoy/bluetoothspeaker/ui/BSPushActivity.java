@@ -87,7 +87,7 @@ public class BSPushActivity extends BSActionBarActivity implements
 
 	@Override
 	public void onDeviceFound(BluetoothDevice device) {
-		if (device.getName().equals(BSApplication.BLUETOOTH_SPEAKER_NAME)) {
+		if (device.getName().equals(BSConfigure.BLUETOOTH_SPEAKER_NAME)) {
 			m_spp.stopDeviceDiscovery();
 			m_progDialog.setMessage("找到蓝牙音箱，正在配对");
 

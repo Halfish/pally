@@ -6,6 +6,9 @@ import java.util.Map;
 import android.util.Log;
 
 public class BSApplication {
+	
+	public static final String BLUETOOTH_SPEAKER_NAME = "Halfish";
+	
 	private static ArrayList<BSAlbum> mData;
 	private static ArrayList<Map<String, Object>> mAlbums;
 

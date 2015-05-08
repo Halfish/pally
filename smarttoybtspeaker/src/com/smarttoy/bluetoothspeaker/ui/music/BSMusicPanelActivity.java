@@ -15,6 +15,7 @@ import com.fortysevendeg.swipelistview.SwipeListView;
 import com.smarttoy.bluetoothspeaker.R;
 import com.smarttoy.bluetoothspeaker.ui.BSActionBarActivity;
 import com.smarttoy.bluetoothspeaker.ui.BSApplication;
+import com.smarttoy.bluetoothspeaker.ui.BSPushActivity;
 
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
@@ -79,9 +80,7 @@ public class BSMusicPanelActivity extends BSActionBarActivity {
 			break;
 
 		case R.id.menu_push:
-			Intent intent1 = new Intent(BSMusicPanelActivity.this,
-					BSPushMusicActivity.class);
-			startActivity(intent1);
+			startPushActivity();
 			break;
 
 		case R.id.menu_add:
@@ -104,6 +103,35 @@ public class BSMusicPanelActivity extends BSActionBarActivity {
 		}
 
 		return false;
+	}
+	
+	private void startPushActivity() {
+		Intent intent = new Intent(BSMusicPanelActivity.this,
+				BSPushActivity.class);
+		
+		String data = "1";
+		for (int i = 0; i < m_listItems.size(); i++) {
+			String seq = (String)m_listItems.get(i).get("sequence");
+			if (!parseNumToAlphaBeta(seq).equals("0")) {
+				data = data + parseNumToAlphaBeta(seq);
+			}
+		}
+		intent.putExtra("data", data);
+		Log.e("Halfish", data);
+		startActivity(intent);
+	}
+	
+	private String parseNumToAlphaBeta(String s) {
+		char alphaBeta = 0;
+		String ss[] = s.split("\\.");
+		int num = Integer.parseInt(ss[0]);
+		if (num >= 1 && num <= 26) {
+			alphaBeta = (char) ('a' + num - 1);
+		} else if(num >= 27 && num <= 52) {
+			alphaBeta = (char) ('A' + num - 27);
+		}
+		
+		return String.valueOf(alphaBeta);
 	}
 
 	public static final int REQUEST_CODE = 1000;

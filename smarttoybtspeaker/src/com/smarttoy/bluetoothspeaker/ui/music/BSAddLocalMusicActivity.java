@@ -30,6 +30,7 @@ import android.media.MediaPlayer.OnErrorListener;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
+import android.os.Looper;
 import android.os.Message;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -51,8 +52,9 @@ import android.widget.Toast;
 public class BSAddLocalMusicActivity extends BSActionBarActivity implements
 		OnErrorListener, OnCompletionListener {
 
-	private static final String LOG_TAG = BSAddLocalMusicActivity.class.getName();
-	
+	private static final String LOG_TAG = BSAddLocalMusicActivity.class
+			.getName();
+
 	private Context m_context;
 	private LayoutInflater m_inflater;
 	private ListView m_listView;
@@ -65,6 +67,7 @@ public class BSAddLocalMusicActivity extends BSActionBarActivity implements
 	private List<String> m_musicList;
 	private List<SONG_STATE> m_songStates;
 	private List<Boolean> m_songSelected;
+	private int m_songNum = 0;
 	private Handler m_handler;
 	private ProgressDialog m_progressDialog;
 
@@ -104,10 +107,8 @@ public class BSAddLocalMusicActivity extends BSActionBarActivity implements
 		super.onDestroy();
 	}
 
-	@SuppressLint("HandlerLeak")
 	private void initHandler() {
-		// TODO need to debug
-		m_handler = new Handler() {
+		m_handler = new Handler(Looper.getMainLooper()) {
 			@Override
 			public void handleMessage(Message msg) {
 				switch (msg.what) {
@@ -131,17 +132,25 @@ public class BSAddLocalMusicActivity extends BSActionBarActivity implements
 		item = new HashMap<String, Object>();
 
 		Bitmap bitmap;
-		bitmap = getAlbumCover(m_musicList.get(m_musicList.size() - 1));
+		bitmap = getAlbumCover(m_musicList.get(m_songNum));
 		if (bitmap != null) {
 			item.put("album", new BitmapDrawable(getResources(), bitmap));
 		} else {
 			item.put("album", getResources()
 					.getDrawable(R.drawable.album_jay_1));
 		}
-		
-		item.put("name", name);
+
+		String albumName = getFileTitle(m_musicList.get(m_songNum));
+		if (albumName == null) {
+			albumName = name;
+		}
+
+		item.put("name", albumName);
+		item.put("sequence", name);
+
 		m_listItems.add(item);
 		m_adapter.notifyDataSetChanged();
+		m_songNum++;
 	}
 
 	private Bitmap getAlbumCover(String path) {
@@ -153,7 +162,7 @@ public class BSAddLocalMusicActivity extends BSActionBarActivity implements
 		}
 
 		byte[] img = m_util.getAlbumCover();
-		
+
 		if (img == null) {
 			Log.e(LOG_TAG, "getAlbumCover: parse image empty!");
 			return null;
@@ -164,6 +173,16 @@ public class BSAddLocalMusicActivity extends BSActionBarActivity implements
 		Bitmap bitmap = BitmapFactory.decodeByteArray(img, 0, img.length,
 				bitmapOption);
 		return bitmap;
+	}
+
+	private String getFileTitle(String path) {
+		STMp3Util util = new STMp3Util(path);
+		if (!util.init()) {
+			Log.e(LOG_TAG, "getFileTitle: open mp3 file failed");
+			return null;
+		}
+		String title = util.getTitle();
+		return title;
 	}
 
 	private void initListView() {
@@ -245,6 +264,7 @@ public class BSAddLocalMusicActivity extends BSActionBarActivity implements
 		if (Environment.getExternalStorageState().equals(
 				Environment.MEDIA_MOUNTED)) {
 			m_progressDialog = new ProgressDialog(this);
+			m_progressDialog.setCanceledOnTouchOutside(false);
 			m_progressDialog.setMessage(getResources().getString(
 					R.string.bs_music_searching));
 			m_progressDialog.show();
@@ -260,6 +280,7 @@ public class BSAddLocalMusicActivity extends BSActionBarActivity implements
 						m_songStates.clear();
 						m_listItems.clear();
 						m_songSelected.clear();
+						m_songNum = 0;
 					} else {
 						m_musicList = new ArrayList<String>();
 						m_songStates = new ArrayList<BSAddLocalMusicActivity.SONG_STATE>();
@@ -325,9 +346,10 @@ public class BSAddLocalMusicActivity extends BSActionBarActivity implements
 			break;
 
 		case R.id.menu_complete:
-			ArrayList<Map<String, Object>> albums = new ArrayList<Map<String,Object>>();
+			// TODO return to last activity with data
+			ArrayList<Map<String, Object>> albums = new ArrayList<Map<String, Object>>();
 			for (int i = 0; i < m_songSelected.size(); i++) {
-				if(m_songSelected.get(i)) {
+				if (m_songSelected.get(i)) {
 					albums.add(m_listItems.get(i));
 				}
 			}

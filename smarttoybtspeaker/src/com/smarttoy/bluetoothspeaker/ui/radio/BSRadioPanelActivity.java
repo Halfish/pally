@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,12 +19,11 @@ import android.widget.FrameLayout;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import com.smarttoy.bluetoothspeaker.R;
 import com.smarttoy.bluetoothspeaker.ui.BSActionBarActivity;
 import com.smarttoy.bluetoothspeaker.ui.BSAlbum;
 import com.smarttoy.bluetoothspeaker.ui.BSApplication;
+import com.smarttoy.bluetoothspeaker.ui.BSPushActivity;
 
 public class BSRadioPanelActivity extends BSActionBarActivity {
 
@@ -63,8 +63,7 @@ public class BSRadioPanelActivity extends BSActionBarActivity {
 			break;
 
 		case R.id.menu_push:
-			Toast.makeText(getApplicationContext(), "Push!", Toast.LENGTH_SHORT)
-					.show();
+			startPushActivity();
 			break;
 
 		case R.id.menu_add:
@@ -78,6 +77,33 @@ public class BSRadioPanelActivity extends BSActionBarActivity {
 		}
 
 		return false;
+	}
+	
+	private void startPushActivity() {
+		Intent intent = new Intent(BSRadioPanelActivity.this,
+				BSPushActivity.class);
+		
+		String data = "2";
+		for (int i = 0; i < m_listItems.size(); i++) {
+			int seq = m_listItems.get(i).getAlbumId();
+			if (!parseNumToAlphaBeta(seq + 1).equals("0")) {
+				data = data + parseNumToAlphaBeta(seq + 1);
+			}
+		}
+		intent.putExtra("data", data);
+		Log.e("Halfish", data);
+		startActivity(intent);
+	}
+	
+	private String parseNumToAlphaBeta(int num) {
+		char alphaBeta = 0;
+		if (num >= 1 && num <= 26) {
+			alphaBeta = (char) ('a' + num - 1);
+		} else if(num >= 27 && num <= 52) {
+			alphaBeta = (char) ('A' + num - 27);
+		}
+		
+		return String.valueOf(alphaBeta);
 	}
 
 	@Override

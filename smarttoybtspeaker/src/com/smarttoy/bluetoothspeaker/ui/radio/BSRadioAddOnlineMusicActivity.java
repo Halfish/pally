@@ -28,12 +28,22 @@ public class BSRadioAddOnlineMusicActivity extends BSActionBarActivity {
 			R.drawable.album_jay_4, R.drawable.album_jay_5,
 			R.drawable.album_jay_6, R.drawable.album_jay_7,
 			R.drawable.album_jay_8, R.drawable.album_jay_9 };
-	private String[] m_channels = new String[] { "Hip Hop", "Country Music",
-			"Blues" };
+	private String[] m_channels = new String[] { "时下热门", "新闻",
+			"音乐", "生活", "教育", "经济", "军事", "老年之声" };
+	private static final int ALBUM_NUM_PER_CHANNEL = 4;
+	
+	private String m_radioAlbum[][] = new String [][] {
+			{"坏蛋调频", "冬吴相对论", "chiliko聊日本", "音粤台"}, 
+			{"新闻联播", "新闻空间（粤）", "央广新闻", "早安台湾（闽南语）"},
+			{"MusicRadioTop排行", "MusicRadioTop排行（2）", "全球流行音乐榜", "全球流行音乐榜"},
+			{"午夜剧场", "午夜剧场（2）", "午夜听书", "学讲普通话"},
+			{"Learning English for China", "Slow German", "6 Minute English", "TED"},
+			{"股市快评", "天天财经", "证券大本营", "天下公司"},
+			{"国防军事干线", "国防时空", "国防时空", "海峡军事漫谈"},
+			{"健康之家", "评述听天下", "清晨有约", "夕阳红茶馆"}
+	};
+	
 	private boolean m_albumSelected[];
-
-	private static final int ALBUM_NUM_PER_CHANNEL = 3;
-	private static final int CHANNEL_NUM = 3;
 
 	private ListView m_listView;
 	private OnlineMusicBaseAdapter m_adapter;
@@ -61,14 +71,22 @@ public class BSRadioAddOnlineMusicActivity extends BSActionBarActivity {
 	private void initData() {
 		m_listItems = new ArrayList<BSAlbum>();
 		m_listSelected = new ArrayList<BSAlbum>();
-		m_albumSelected = new boolean[ALBUM_NUM_PER_CHANNEL * CHANNEL_NUM];
+		m_albumSelected = new boolean[50];
 
-		for (int i = 0; i < ALBUM_NUM_PER_CHANNEL * CHANNEL_NUM; ++i) {
-			m_item = new BSAlbum(i, "title" + i, "artist" + i, getResources()
-					.getDrawable(m_JayAlbumIds[i]));
-			m_listItems.add(m_item);
-			m_albumSelected[i] = false;
+		
+		int index = 0;
+		
+		for (int i = 0; i < m_channels.length; i++) {
+			String s[] = m_radioAlbum[i];
+			for (int j = 0; j < s.length; j++) {
+				m_item = new BSAlbum(index, s[j], "", getResources()
+						.getDrawable(m_JayAlbumIds[i % 9]));
+				m_listItems.add(m_item);
+				m_albumSelected[i] = false;
+				index ++;
+			}
 		}
+		
 	}
 
 	@Override
@@ -96,7 +114,7 @@ public class BSRadioAddOnlineMusicActivity extends BSActionBarActivity {
 	}
 
 	private void setResultForRadioPanel() {
-		for (int i = 0; i < ALBUM_NUM_PER_CHANNEL * CHANNEL_NUM; i++) {
+		for (int i = 0; i < 32; i++) {
 			if (m_albumSelected[i]) {
 				m_listSelected.add(m_listItems.get(i));
 			}
@@ -116,7 +134,7 @@ public class BSRadioAddOnlineMusicActivity extends BSActionBarActivity {
 
 		@Override
 		public int getCount() {
-			return CHANNEL_NUM;
+			return m_channels.length;
 		}
 
 		@Override

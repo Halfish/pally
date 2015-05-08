@@ -3,22 +3,5 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" > 
 
-    <ProgressBar
-        android:id="@+id/progBar_music_push"
-        style="?android:attr/progressBarStyleLarge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/tv_pushing"
-        android:layout_margin="20dp"
-        android:layout_centerHorizontal="true" />
-    
-    <TextView
-        android:id="@+id/tv_pushing"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="20sp"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:text="@string/bs_music_pushing" />
-
+   
 </RelativeLayout>

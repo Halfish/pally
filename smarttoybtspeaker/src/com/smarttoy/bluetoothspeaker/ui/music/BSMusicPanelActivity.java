@@ -90,13 +90,7 @@ public class BSMusicPanelActivity extends BSActionBarActivity {
 			Intent intent2 = new Intent(BSMusicPanelActivity.this,
 					BSAddLocalMusicActivity.class);
 			startActivityForResult(intent2, REQUEST_CODE);
-			break;
-
-		case R.id.menu_add_online:
-			Intent intent3 = new Intent(BSMusicPanelActivity.this,
-					BSAddOnlineMusicActivity.class);
-			startActivity(intent3);
-			break;
+			break;	
 
 		default:
 			break;

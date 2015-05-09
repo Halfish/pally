@@ -22,7 +22,7 @@
             android:layout_gravity="center"
             android:contentDescription="@string/bs_default_descrip"
             android:scaleType="fitXY"
-            android:src="@drawable/album_taylor_7" />
+            android:src="@drawable/album" />
 
         <ImageView
             android:layout_width="128dp"

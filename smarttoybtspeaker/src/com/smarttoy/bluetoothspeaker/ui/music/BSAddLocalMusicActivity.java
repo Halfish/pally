@@ -137,7 +137,7 @@ public class BSAddLocalMusicActivity extends BSActionBarActivity implements
 			item.put("album", new BitmapDrawable(getResources(), bitmap));
 		} else {
 			item.put("album", getResources()
-					.getDrawable(R.drawable.album_jay_1));
+					.getDrawable(R.drawable.album));
 		}
 
 		String albumName = getFileTitle(m_musicList.get(m_songNum));

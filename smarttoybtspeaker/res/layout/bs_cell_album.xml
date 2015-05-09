@@ -8,7 +8,7 @@
         android:layout_width="128dp"
         android:layout_height="128dp"
         android:contentDescription="@string/bs_default_descrip"
-        android:src="@drawable/album_jay_1"
+        android:src="@drawable/album"
         android:scaleType="fitXY" />
 
     <ImageView

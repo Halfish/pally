@@ -23,14 +23,20 @@ import android.widget.TextView;
 
 public class BSRadioAddOnlineMusicActivity extends BSActionBarActivity {
 
-	private int[] m_JayAlbumIds = new int[] { R.drawable.album_jay_1,
-			R.drawable.album_jay_2, R.drawable.album_jay_3,
-			R.drawable.album_jay_4, R.drawable.album_jay_5,
-			R.drawable.album_jay_6, R.drawable.album_jay_7,
-			R.drawable.album_jay_8, R.drawable.album_jay_9 };
 	private String[] m_channels = new String[] { "时下热门", "新闻",
 			"音乐", "生活", "教育", "经济", "军事", "老年之声" };
 	private static final int ALBUM_NUM_PER_CHANNEL = 4;
+	
+	private int m_radioCover[] = new int [] {
+		R.drawable.r1, R.drawable.r2, R.drawable.r3, R.drawable.r4, 
+		R.drawable.r5, R.drawable.r6, R.drawable.r7, R.drawable.r8,
+		R.drawable.r9, R.drawable.r10, R.drawable.r11, R.drawable.r11,
+		R.drawable.r13, R.drawable.r14, R.drawable.r15, R.drawable.r16,
+		R.drawable.r17, R.drawable.r18, R.drawable.r19, R.drawable.r20, 
+		R.drawable.r21, R.drawable.r22, R.drawable.r23, R.drawable.r24,
+		R.drawable.r25, R.drawable.r26, R.drawable.r26, R.drawable.r28,
+		R.drawable.r29, R.drawable.r30, R.drawable.r31, R.drawable.r32,
+	};
 	
 	private String m_radioAlbum[][] = new String [][] {
 			{"坏蛋调频", "冬吴相对论", "chiliko聊日本", "音粤台"}, 
@@ -80,7 +86,7 @@ public class BSRadioAddOnlineMusicActivity extends BSActionBarActivity {
 			String s[] = m_radioAlbum[i];
 			for (int j = 0; j < s.length; j++) {
 				m_item = new BSAlbum(index, s[j], "", getResources()
-						.getDrawable(m_JayAlbumIds[i % 9]));
+						.getDrawable(m_radioCover[index]));
 				m_listItems.add(m_item);
 				m_albumSelected[i] = false;
 				index ++;

@@ -7,7 +7,7 @@ import android.util.Log;
 
 public class BSConfigure {
 	
-	public static final String BLUETOOTH_SPEAKER_NAME = "Halfish";
+	public static final String BLUETOOTH_SPEAKER_NAME = "BK8000L";
 	
 	private static ArrayList<BSAlbum> mData;
 	private static ArrayList<Map<String, Object>> mAlbums;

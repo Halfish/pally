@@ -17,6 +17,7 @@ import com.smarttoy.util.STTimer;
 import com.smarttoy.util.STTimer.OnTimer;
 
 import android.app.ProgressDialog;
+import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.os.Bundle;
 import android.util.Log;
@@ -37,6 +38,13 @@ public class BSPushActivity extends BSActionBarActivity implements
 		setActionBarCenterTitle(getResources().getString(
 				R.string.bs_music_local));
 
+		// OPEN BLUETOOTH
+		BluetoothAdapter adapter = BluetoothAdapter.getDefaultAdapter();
+		if (!adapter.isEnabled()) {
+			Toast.makeText(this, "正在打开蓝牙", Toast.LENGTH_LONG).show();
+			adapter.enable();
+		}
+		
 		m_spp = new STSppClient(this);
 		m_spp.setEventCallBack(this);
 
@@ -48,7 +56,7 @@ public class BSPushActivity extends BSActionBarActivity implements
 		m_progDialog.show();
 
 		m_timer = new STTimer(this);
-		m_timer.start(12000);
+		m_timer.start(15000);
 	}
 
 	@Override
@@ -87,6 +95,7 @@ public class BSPushActivity extends BSActionBarActivity implements
 
 	@Override
 	public void onDeviceFound(BluetoothDevice device) {
+		Log.v("BSPushActivity", "Find BluetoothDevice: " + device.getName());
 		if (device.getName().equals(BSConfigure.BLUETOOTH_SPEAKER_NAME)) {
 			m_spp.stopDeviceDiscovery();
 			m_progDialog.setMessage("找到蓝牙音箱，正在配对");
@@ -98,10 +107,9 @@ public class BSPushActivity extends BSActionBarActivity implements
 				// connect directly
 				if (m_spp.connect(device)) {
 					sendDataToServer();
-					m_progDialog.setMessage("已发送至服务器！");
 				} else {
-					//Toast.makeText(this, "连接蓝牙出错！", Toast.LENGTH_LONG).show();
-					Log.e("Halfish", "connect failed");
+					Toast.makeText(this, "连接蓝牙出错！", Toast.LENGTH_LONG).show();
+					Log.e("Halfish", "connect directly failed");
 					m_progDialog.dismiss();
 				}
 			}
@@ -116,17 +124,19 @@ public class BSPushActivity extends BSActionBarActivity implements
 			OutputStream output = m_spp.getOutputStream();
 			output.write(data.getBytes());
 			output.flush();
-			m_progDialog.dismiss();
-			
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+
+		Toast.makeText(this, "已经推送到蓝牙设备！", Toast.LENGTH_LONG).show();
 	}
 
 	@Override
 	public void onDeviceBounded(BluetoothDevice device) {
-		// connect after bound
-		if (m_spp.connect(device)) {
+		if(m_spp.isConnected()) {
+			sendDataToServer();
+		} else if (m_spp.connect(device)) {
 			sendDataToServer();
 		} else {
 			Toast.makeText(this, "onDeviceBounded 连接蓝牙出错！", Toast.LENGTH_LONG)
@@ -146,7 +156,7 @@ public class BSPushActivity extends BSActionBarActivity implements
 				|| errorCode == STBluetoothManager.ERROR_BOUND_ERROR) {
 			Toast.makeText(this, "配对设置出错，请手动配对", Toast.LENGTH_SHORT).show();
 		}
-		
+
 		Toast.makeText(this, "errorCode is " + errorCode, Toast.LENGTH_SHORT)
 				.show();
 	}
@@ -155,9 +165,16 @@ public class BSPushActivity extends BSActionBarActivity implements
 	public void OnTrigger(Object arg) {
 		if (m_spp.isDiscovering()) {
 			m_spp.stopDeviceDiscovery();
-			Toast.makeText(this, "找不到蓝牙音箱", Toast.LENGTH_LONG).show();
 		}
-		
+		m_progDialog.dismiss();
+	}
+
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		if(! m_spp.isConnected()) {
+			m_spp.disconnect();
+		}
 		m_progDialog.dismiss();
 	}
 

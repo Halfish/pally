@@ -32,20 +32,20 @@ public class BSRadioAddOnlineMusicActivity extends BSActionBarActivity {
 		R.drawable.r5, R.drawable.r6, R.drawable.r7, R.drawable.r8,
 		R.drawable.r9, R.drawable.r10, R.drawable.r11, R.drawable.r11,
 		R.drawable.r13, R.drawable.r14, R.drawable.r15, R.drawable.r16,
-		R.drawable.r17, R.drawable.r18, R.drawable.r19, R.drawable.r20, 
+		R.drawable.r17, R.drawable.r18, R.drawable.r20, R.drawable.r19, 
 		R.drawable.r21, R.drawable.r22, R.drawable.r23, R.drawable.r24,
 		R.drawable.r25, R.drawable.r26, R.drawable.r26, R.drawable.r28,
 		R.drawable.r29, R.drawable.r30, R.drawable.r31, R.drawable.r32,
 	};
 	
 	private String m_radioAlbum[][] = new String [][] {
-			{"坏蛋调频", "冬吴相对论", "chiliko聊日本", "音粤台"}, 
+			{"坏蛋调频", "冬吴相对论", "chiliko聊日本", "电影不无聊"}, 
 			{"新闻联播", "新闻空间（粤）", "央广新闻", "早安台湾（闽南语）"},
 			{"MusicRadioTop排行", "MusicRadioTop排行（2）", "全球流行音乐榜", "全球流行音乐榜"},
-			{"午夜剧场", "午夜剧场（2）", "午夜听书", "学讲普通话"},
-			{"Learning English for China", "Slow German", "6 Minute English", "TED"},
+			{"午夜剧场", "午夜听书", "学讲普通话", "养生大讲堂"},
+			{"Learning English for China", "Slow French", "6 Minute English", "TED"},
 			{"股市快评", "天天财经", "证券大本营", "天下公司"},
-			{"国防军事干线", "国防时空", "国防时空", "海峡军事漫谈"},
+			{"国防军事干线", "国防时空", "国防时空（二）", "海峡军事漫谈"},
 			{"健康之家", "评述听天下", "清晨有约", "夕阳红茶馆"}
 	};
 	
